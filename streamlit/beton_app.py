@@ -16,8 +16,8 @@ import pickle
 
 ############################################# DIR'S PATH ###################################################
 
-MODEL_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),'..\data\model.h5')
-SAVE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),'..\data')
+MODEL_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),'../data/model.h5')
+SAVE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),'../data')
 
 
 
