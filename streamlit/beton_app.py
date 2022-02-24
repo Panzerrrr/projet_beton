@@ -14,7 +14,6 @@ import pandas as pd
 import numpy as np
 import pickle
 
-
 ############################################# DIR'S PATH ###################################################
 
 MODEL_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),'../data/model.h5')
