@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import os
+import base64
 
 ########### PREDICT ###########
 
@@ -125,6 +126,18 @@ def check_norm(predicted_score):
             norm_list.append(recipe)
     return norm_list
 
+
+# st.markdown(get_table_download_link(df), unsafe_allow_html=True)
+# def get_table_download_link(df):
+#     """Generates a link allowing the data in a given panda dataframe to be downloaded
+#     in:  dataframe
+#     out: href string
+#     """
+#     csv = df.to_csv(index=False)
+#     b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
+#     href = f'<a href="data:file/csv;base64,{b64}">Download csv file</a>'
+
+
 datafile = st.file_uploader("Fichier CSV nécessaire",type=['csv'])
 if datafile is not None:
    file_details = {"FileName":datafile.name,"FileType":datafile.type}
@@ -134,8 +147,11 @@ if datafile is not None:
    ##### USE DATA'S SAVED WITH THE MODEL FOR PREDICT #####
    predictions = model.predict(df.drop(columns=['Strength'],axis=1))
    norm_list = check_norm(predictions)
-
+   st.write(type(predictions))
+#    predictions_to_csv = pd.DataFrame(predictions).to_csv("path/to/file.csv")
    metric_col1, metric_col2, metric_col3 = st.columns([0.2,0.6,1]) 
+   
+
 
    i = 1 
    for list in norm_list:
@@ -144,4 +160,19 @@ if datafile is not None:
         metric_col3.metric("Classe d'exposition", list['norm'])
         i += 1
 
+   @st.cache
+   def convert_df(array):
+        return pd.DataFrame(array).to_csv().encode('utf-8')
 
+
+   csv = convert_df(predictions)
+
+   st.download_button(
+   "Press to Download",
+   csv,
+   "file.csv",
+   "text/csv",
+   key='download-csv'
+   )
+
+    
