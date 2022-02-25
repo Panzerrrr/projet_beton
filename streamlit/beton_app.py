@@ -34,7 +34,7 @@ model = load_model(MODEL_DIR)
 #############################################LOGO########################################################
 
 # st.write("a logo and text next to eachother")
-col1, mid, col2 = st.columns([15,30,20])
+col1, mid, col2 = st.columns([20,30,20])
 with col1:
     st.image(Image.open(VICAT_LOGO), width=130)
 with mid:
@@ -53,7 +53,7 @@ with mid:
             
             </style>
 
-            <p class="t">NOTEB APP BETON</p>
+            <p class="t">Predi BET</p>
 
             """
     # st.write(html_str, width=120)
