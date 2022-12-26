@@ -1,0 +1,5 @@
+setup.py
+beton.egg-info/PKG-INFO
+beton.egg-info/SOURCES.txt
+beton.egg-info/dependency_links.txt
+beton.egg-info/top_level.txt
